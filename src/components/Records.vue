@@ -13,7 +13,7 @@
 import axios from 'axios';
 import Record from './Record.vue';
 export default {
-  name: 'hello',
+  name: 'records',
   components: {
     Record
   },
