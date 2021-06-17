@@ -13,6 +13,16 @@
 <script>
 import axios from 'axios';
 import Record from './Record.vue';
+
+const fetchRecords = (user, page) => {
+    const url = `https://api.discogs.com/users/${user}/collection/folders/0/releases?per_page=100&page=${page}`;
+    return axios.get(url, {
+      headers: {
+        'Authorization': `Discogs key=${process.env.VUE_APP_DISCOGS_KEY}, secret=${process.env.VUE_APP_DISCOGS_SECRET}`
+      }
+    });
+}
+
 export default {
   name: 'records',
   components: {
@@ -27,15 +37,10 @@ export default {
   created () {
     const urlParams = new URLSearchParams(window.location.search);
     const user = urlParams.get('user');
-    const url = `https://api.discogs.com/users/${user}/collection/folders/0/releases`;
-    axios.get(url, {
-      headers: {
-        'Authorization': `Discogs key=${process.env.VUE_APP_DISCOGS_KEY}, secret=${process.env.VUE_APP_DISCOGS_SECRET}`
-      }
-    }).then(res => {
+    fetchRecords(user, 1)
+      .then(res => {
         this.records = res.data.releases;
-        console.log(res);
-      });
+      })
   },
   computed: {
     filteredRecords () {
