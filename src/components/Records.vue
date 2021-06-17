@@ -1,12 +1,13 @@
 <template>
   <div id="records">
     <input class="search" v-model="searchQuery" autofocus onfocus="this.select()"/>
+    <div v-if="loading">Loading records...</div>
     <ul>
       <li v-for="record in filteredRecords" :key="record.id">
         <Record v-bind:record="record.basic_information"/>
       </li>
     </ul>
-    <div v-if="filteredRecordsEmpty" class="empty">No records found =(</div>
+    <div v-if="filteredRecordsEmpty && !loading" class="empty">No records found =(</div>
   </div>
 </template>
 
@@ -31,6 +32,7 @@ export default {
   data () {
     return {
       records: [],
+      loading: true,
       searchQuery: '',
     }
   },
@@ -49,8 +51,11 @@ export default {
             .then(results => {
               results.forEach(response => {
                 this.records = this.records.concat(response.data.releases);
-              })
+              });
+              this.loading = false;
             })
+        } else {
+          this.loading = false;
         }
       })
   },
