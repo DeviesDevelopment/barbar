@@ -68,7 +68,9 @@ export default {
         .filter(record => {
           const titleMatches = record.basic_information.title.toLowerCase()
             .includes(this.searchQuery.toLowerCase());
-          const artistMatches = record.basic_information.artists[0].name.toLowerCase()
+          const artistMatches = record.basic_information.artists
+            .map(artist => artist.name.toLowerCase())
+            .join(" / ")
             .includes(this.searchQuery.toLowerCase());
           return titleMatches || artistMatches;
         })

@@ -5,7 +5,7 @@
     </div>
     <div class="record-info">
       <h1>{{record.title}}</h1>
-      <h2>{{record.artists[0].name}}</h2>
+      <h2>{{artists}}</h2>
     </div>
   </div>
 </template>
@@ -19,6 +19,13 @@ export default {
       required: true,
     },
   },
+  computed: {
+    artists () {
+      return this.record.artists
+        .map(artist => artist.name)
+        .join(" / ");
+    }
+  }
 }
 </script>
 
