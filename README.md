@@ -1,4 +1,7 @@
 # barbar
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0688444a-b1e9-40e7-b71d-28a051a259f4/deploy-status)](https://app.netlify.com/sites/barbar/deploys)
+
+[Barbar](https://barbar.netlify.com)
 
 ## Project setup
 ```
