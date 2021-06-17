@@ -1,5 +1,5 @@
 <template>
-  <div id="hello">
+  <div id="records">
     <ul>
       <li v-for="record in records" :key="record.id">
         <Record v-bind:record="record.basic_information"/>
@@ -36,17 +36,8 @@ export default {
 </script>
 
 <style scoped>
-#hello {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-h1, h2 {
-  font-weight: normal;
+#records {
+  max-width: 50%;
 }
 
 ul {
@@ -56,9 +47,5 @@ ul {
 
 li {
   margin: 0 10px;
-}
-
-a {
-  color: #42b983;
 }
 </style>
