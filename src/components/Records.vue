@@ -6,6 +6,7 @@
         <Record v-bind:record="record.basic_information"/>
       </li>
     </ul>
+
   </div>
 </template>
 
@@ -56,7 +57,9 @@ export default {
 
 <style scoped>
 #records {
-  max-width: 50%;
+  max-width: 70ch;
+  padding: 2ch;
+  margin: auto;
 }
 
 ul {
@@ -69,6 +72,7 @@ li {
 }
 
 .search {
+  box-sizing: border-box;
   padding: 12px 20px;
   font-size: 1.4rem;
   border-width: calc(5px);
