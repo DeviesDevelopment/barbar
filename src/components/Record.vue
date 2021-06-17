@@ -6,7 +6,7 @@
     <div class="record-info">
       <h1>{{record.title}}</h1>
       <h2>{{artists}}</h2>
-      <p>{{formats}} ({{record.year}})</p>
+      <p>{{formats}} ({{labels}}, {{record.year}})</p>
     </div>
   </div>
 </template>
@@ -29,6 +29,11 @@ export default {
     formats () {
       return this.record.formats
         .map(format => format.name)
+        .join(" / ");
+    },
+    labels () {
+      return this.record.labels
+        .map(label => label.name)
         .join(" / ");
     },
     link () {
