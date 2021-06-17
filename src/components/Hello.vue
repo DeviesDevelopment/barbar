@@ -1,6 +1,6 @@
 <template>
   <div id="records">
-    <input v-model="searchQuery" autofocus onfocus="this.select()"/>
+    <input class="search" v-model="searchQuery" autofocus onfocus="this.select()"/>
     <ul>
       <li v-for="record in filteredRecords" :key="record.id">
         <Record v-bind:record="record.basic_information"/>
@@ -66,5 +66,16 @@ ul {
 
 li {
   margin: 0 10px;
+}
+
+.search {
+  padding: 12px 20px;
+  font-size: 1.4rem;
+  border-width: calc(5px);
+  border-style: solid;
+  border-radius: calc(6px);
+  text-align: center;
+  outline: transparent;
+  width: 100%;
 }
 </style>
