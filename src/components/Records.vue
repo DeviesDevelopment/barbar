@@ -40,6 +40,18 @@ export default {
     fetchRecords(user, 1)
       .then(res => {
         this.records = res.data.releases;
+        if (res.data.pagination.pages > 1) {
+          const promises = [];
+          for (let i = 2; i <= res.data.pagination.pages; i++) {
+            promises.push(fetchRecords(user, i));
+          }
+          Promise.all(promises)
+            .then(results => {
+              results.forEach(response => {
+                this.records = this.records.concat(response.data.releases);
+              })
+            })
+        }
       })
   },
   computed: {
