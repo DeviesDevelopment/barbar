@@ -6,7 +6,7 @@
     <div class="record-info">
       <h1>{{record.title}}</h1>
       <h2>{{artists}}</h2>
-      <p>{{formats}}</p>
+      <p>{{formats}} ({{record.year}})</p>
     </div>
   </div>
 </template>
