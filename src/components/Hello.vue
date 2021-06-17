@@ -22,7 +22,9 @@ export default {
     }
   },
   created () {
-    const url = 'https://api.discogs.com/users/Dunklas/collection/folders/0/releases';
+    const urlParams = new URLSearchParams(window.location.search);
+    const user = urlParams.get('user');
+    const url = `https://api.discogs.com/users/${user}/collection/folders/0/releases`;
     axios.get(url, {
       headers: {
         'Authorization': `Discogs key=${process.env.VUE_APP_DISCOGS_KEY}, secret=${process.env.VUE_APP_DISCOGS_SECRET}`
