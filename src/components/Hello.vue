@@ -1,7 +1,8 @@
 <template>
   <div id="records">
+    <input v-model="searchQuery" autofocus onfocus="this.select()"/>
     <ul>
-      <li v-for="record in records" :key="record.id">
+      <li v-for="record in filteredRecords" :key="record.id">
         <Record v-bind:record="record.basic_information"/>
       </li>
     </ul>
@@ -18,7 +19,8 @@ export default {
   },
   data () {
     return {
-      records: [] 
+      records: [],
+      searchQuery: '',
     }
   },
   created () {
@@ -33,6 +35,21 @@ export default {
         this.records = res.data.releases;
         console.log(res);
       });
+  },
+  computed: {
+    filteredRecords () {
+      if (!this.searchQuery) {
+        return this.records;
+      }
+      return this.records
+        .filter(record => {
+          const titleMatches = record.basic_information.title.toLowerCase()
+            .includes(this.searchQuery.toLowerCase());
+          const artistMatches = record.basic_information.artists[0].name.toLowerCase()
+            .includes(this.searchQuery.toLowerCase());
+          return titleMatches || artistMatches;
+        })
+    }
   }
 }
 </script>
