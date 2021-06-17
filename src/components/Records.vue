@@ -6,7 +6,7 @@
         <Record v-bind:record="record.basic_information"/>
       </li>
     </ul>
-
+    <div v-if="filteredRecordsEmpty" class="empty">No records found =(</div>
   </div>
 </template>
 
@@ -50,6 +50,9 @@ export default {
             .includes(this.searchQuery.toLowerCase());
           return titleMatches || artistMatches;
         })
+    },
+    filteredRecordsEmpty () {
+      return this.filteredRecords.length === 0;
     }
   }
 }
@@ -69,6 +72,12 @@ ul {
 
 li {
   margin: 0 10px;
+}
+
+.empty {
+  margin: 0 10px;
+  padding: 0;
+  width: 100%;
 }
 
 .search {
