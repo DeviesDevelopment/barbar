@@ -1,7 +1,7 @@
 <template>
   <div class="record">
     <div>
-      <a :href="link" target="_blank"><img :src="record.thumb" /></a>
+      <a :href="link" target="_blank"><img v-lazy="record.thumb" /></a>
     </div>
     <div class="record-info">
       <h1>{{record.title}}</h1>
