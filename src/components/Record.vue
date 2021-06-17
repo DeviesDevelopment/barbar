@@ -1,7 +1,7 @@
 <template>
   <div class="record">
     <div>
-      <img :src="record.thumb"/>
+      <a :href="link" target="_blank"><img :src="record.thumb" /></a>
     </div>
     <div class="record-info">
       <h1>{{record.title}}</h1>
@@ -24,6 +24,9 @@ export default {
       return this.record.artists
         .map(artist => artist.name)
         .join(" / ");
+    },
+    link () {
+      return `https://www.discogs.com/release/${this.record.id}`;
     }
   }
 }
