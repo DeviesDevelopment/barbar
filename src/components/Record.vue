@@ -6,6 +6,7 @@
     <div class="record-info">
       <h1>{{record.title}}</h1>
       <h2>{{artists}}</h2>
+      <p>{{formats}}</p>
     </div>
   </div>
 </template>
@@ -23,6 +24,11 @@ export default {
     artists () {
       return this.record.artists
         .map(artist => artist.name)
+        .join(" / ");
+    },
+    formats () {
+      return this.record.formats
+        .map(format => format.name)
         .join(" / ");
     },
     link () {
@@ -54,9 +60,14 @@ h1, h2 {
 }
 h1 {
   font-size: 1.5em;
+  margin: 8px 12px;
 }
 h2 {
   font-size: 1.2em;
+  margin: 8px 12px;
+}
+p {
+  margin: 8px 12px;
 }
 
 ul {
