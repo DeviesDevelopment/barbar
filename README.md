@@ -19,7 +19,7 @@ VUE_APP_DISCOGS_SECRET=YOUR_SECRET
 ```
 
 ```
-npm install
+npm ci
 ```
 
 ### Compiles and hot-reloads for development
