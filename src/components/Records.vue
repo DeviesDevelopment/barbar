@@ -3,7 +3,7 @@
     <input class="search" v-model="searchQuery" autofocus onfocus="this.select()"/>
     <div v-if="loading">Loading records...</div>
     <ul>
-      <li v-for="record in filteredRecords" :key="record.id">
+      <li v-for="record in filteredRecords" :key="record.key">
         <Record v-bind:record="record.basic_information"/>
       </li>
     </ul>
@@ -15,8 +15,10 @@
 import axios from 'axios';
 import Record from './Record.vue';
 
+const page_size = 100;
+
 const fetchRecords = (user, page) => {
-    const url = `https://api.discogs.com/users/${user}/collection/folders/0/releases?per_page=100&page=${page}`;
+    const url = `https://api.discogs.com/users/${user}/collection/folders/0/releases?per_page=${page_size}&page=${page}`;
     return axios.get(url, {
       headers: {
         'Authorization': `Discogs key=${process.env.VUE_APP_DISCOGS_KEY}, secret=${process.env.VUE_APP_DISCOGS_SECRET}`
@@ -41,7 +43,7 @@ export default {
     const user = urlParams.get('user');
     fetchRecords(user, 1)
       .then(res => {
-        this.records = res.data.releases;
+        this.records = res.data.releases.map((record, i) => ({ ...record, key: i}));
         if (res.data.pagination.pages > 1) {
           const promises = [];
           for (let i = 2; i <= res.data.pagination.pages; i++) {
@@ -49,8 +51,8 @@ export default {
           }
           Promise.all(promises)
             .then(results => {
-              results.forEach(response => {
-                this.records = this.records.concat(response.data.releases);
+              results.forEach((response, page) => {
+                this.records = this.records.concat(response.data.releases.map((record, i) => ({ ...record, key: i + page_size * (1 + page)})));
               });
               this.loading = false;
             })
