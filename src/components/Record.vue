@@ -72,10 +72,10 @@ export default {
 }
 
 .record-info {
-  padding: 8px;
+  padding: 0px 8px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
 }
 
 h1, h2 {
@@ -83,14 +83,14 @@ h1, h2 {
 }
 h1 {
   font-size: 1.5em;
-  margin: 8px 12px;
+  margin: 0px 12px 8px 12px;
 }
 h2 {
   font-size: 1.2em;
-  margin: 8px 12px;
+  margin: 0px 12px 8px 12px;
 }
 p {
-  margin: 8px 12px;
+  margin: 0px 12px 8px 12px;
 }
 
 ul {
