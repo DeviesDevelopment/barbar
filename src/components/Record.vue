@@ -12,6 +12,10 @@
 </template>
 
 <script>
+function onlyUnique(value, index, self) {
+  return self.indexOf(value) === index;
+}
+
 export default {
   name: 'record',
   props: {
@@ -24,16 +28,19 @@ export default {
     artists () {
       return this.record.artists
         .map(artist => artist.name)
+        .filter(onlyUnique)
         .join(" / ");
     },
     formats () {
       return this.record.formats
         .map(format => format.name)
+        .filter(onlyUnique)
         .join(" / ");
     },
     labels () {
       return this.record.labels
         .map(label => label.name)
+        .filter(onlyUnique)
         .join(" / ");
     },
     formattedYear() {
