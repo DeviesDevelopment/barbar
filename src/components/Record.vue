@@ -33,7 +33,12 @@ export default {
     },
     formats () {
       return this.record.formats
-        .map(format => format.name)
+        .map(format => {
+          if (format.name === 'Vinyl') {
+            return `${format.name} - ${format.descriptions[0]}`;
+          }
+          return format.name
+        })
         .filter(onlyUnique)
         .join(" / ");
     },
