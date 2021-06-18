@@ -5,7 +5,7 @@
 [Barbar](https://barbar.netlify.com)
 
 ## Deployment
-Deplyed via Netlify.
+Deployed via Netlify.
 To be able to deploy, environment variables `VUE_APP_DISCOGS_KEY` and `VUE_APP_DISCOGS_SECRET` must be present in Netlify > Build & deploy > Environment.
 ## Local setup
 
@@ -39,3 +39,12 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## How to contribute
+
+Contributions are welcome, just open a pull request!
+
+## Contributors
+
+- [Dunklas](https://github.com/Dunklas)
+- [Sundin](https://github.com/Sundin)
