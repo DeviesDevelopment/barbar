@@ -4,7 +4,7 @@ import lazyPlugin from 'vue3-lazy'
 
 const app = createApp(App);
 app.use(lazyPlugin, {
-	error: '',
-	loading: '',
+	error: 'record.jpg',
+	loading: 'record.jpg',
 });
 app.mount('#app')
