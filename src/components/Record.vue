@@ -6,7 +6,7 @@
     <div class="record-info">
       <h1>{{record.title}}</h1>
       <h2>{{artists}}</h2>
-      <p>{{formats}} ({{labels}}, {{record.year}})</p>
+      <p>{{formats}} ({{labels}}{{formattedYear}})</p>
     </div>
   </div>
 </template>
@@ -35,6 +35,12 @@ export default {
       return this.record.labels
         .map(label => label.name)
         .join(" / ");
+    },
+    formattedYear() {
+      if (this.record.year === 0) {
+        return '';
+      }
+      return `, ${this.record.year}`;
     },
     link () {
       return `https://www.discogs.com/release/${this.record.id}`;
