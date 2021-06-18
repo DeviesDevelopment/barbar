@@ -27,7 +27,7 @@ export default {
   computed: {
     artists () {
       return this.record.artists
-        .map(artist => artist.name)
+        .map(artist => artist.name.replace(/\(\d+\)/, ''))
         .filter(onlyUnique)
         .join(" / ");
     },
@@ -44,7 +44,7 @@ export default {
     },
     labels () {
       return this.record.labels
-        .map(label => label.name)
+        .map(label => label.name.replace(/\(\d+\)/, ''))
         .filter(onlyUnique)
         .join(" / ");
     },
